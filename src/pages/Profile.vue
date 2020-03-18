@@ -26,7 +26,7 @@ export default {
           'Authorization': 'JWT ' + token,
         }
       }
-      axios.get('http://localhost:8000/api/v1/users/'+ user_id ,auth).then(function(response){
+      axios.get('/api/v1/users/'+ user_id ,auth).then(function(response){
         console.log(response.data);
         _this.profiles = response.data;
       })
