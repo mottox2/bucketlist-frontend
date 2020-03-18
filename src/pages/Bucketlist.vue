@@ -4,6 +4,7 @@
     <ul>
       <li v-for="(bucketlist, id) in bucketlists" :key="id">
         {{ bucketlist.title }}
+        <button v-on:click="deleteBucketlist(bucketlist)">del</button>
       </li>
     </ul>
     <button v-on:click="getBucketlist">げっと</button>
@@ -48,6 +49,15 @@ export default {
           user_id: localStorage.getItem('user_id')
       }
       axios.post('/api/v1/users/'+ user_id +'/bucketlists',data,{headers:{'Authorization': 'JWT ' + token}}).then(function(response){
+        console.log(response.data);
+      })
+    },
+    deleteBucketlist(bucketlist){
+      var token = localStorage.getItem('access_token')
+      var user_id = localStorage.getItem('user_id')
+      var bucketlist_id = bucketlist.id
+
+      axios.delete('/api/v1/users/'+ user_id +'/bucketlists/'+ bucketlist_id,{headers:{'Authorization': 'JWT ' + token}}).then(function(response){
         console.log(response.data);
       })
     }
