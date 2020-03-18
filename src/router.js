@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home'
-import Login from './components/Login'
-import Profile from './components/Profile'
-import Bucketlist from './components/Bucketlist'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import Bucketlist from './pages/Bucketlist'
 
 Vue.use(Router)
 
@@ -14,11 +13,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: Login
     },
     {
         path: '/profile',

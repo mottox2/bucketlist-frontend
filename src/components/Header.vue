@@ -1,6 +1,9 @@
 <template>
-  <div class="login">
-    <v-text>login</v-text>
+  <div class="header">
+    <router-link to="/"> home </router-link>
+    <router-link to="/profile"> profile </router-link>
+    <router-link to="/bucketlist"> bucketlist </router-link>
+    <div>login</div>
     <input class="input" type="email" v-model="email" name="email">
     <input class="password" type="password" v-model="password" name="password">
     <button v-on:click="signin">認証</button>
@@ -12,7 +15,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 export default {
-  name: 'Login',
+  name: 'header',
   data(){
     return{
       user_id:"",
