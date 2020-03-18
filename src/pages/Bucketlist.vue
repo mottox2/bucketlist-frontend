@@ -7,6 +7,7 @@
       </li>
     </ul>
     <button v-on:click="getBucketlist">げっと</button>
+    <button v-on:click="saveBucketlist">せーぶ</button>
   </div>
 </template>
 
@@ -18,7 +19,9 @@ export default {
 
   data(){
     return {
-      bucketlists:[]
+      bucketlists:[],
+      title:"",
+      text:"",
     }
   },
   methods:{
@@ -31,9 +34,21 @@ export default {
           'Authorization': 'JWT ' + token,
         }
       }
-      axios.get('http://localhost:8000/api/v1/users/'+ user_id +'/bucketlists',auth).then(function(response){
+      axios.get('/api/v1/users/'+ user_id +'/bucketlists',auth).then(function(response){
         console.log(response.data);
         _this.bucketlists = response.data;
+      })
+    },
+    saveBucketlist(){
+      var token = localStorage.getItem('access_token')
+      var user_id = localStorage.getItem('user_id')
+      let data = {
+          title:"title",
+          text:"text",
+          user_id: localStorage.getItem('user_id')
+      }
+      axios.post('/api/v1/users/'+ user_id +'/bucketlists',data,{headers:{'Authorization': 'JWT ' + token}}).then(function(response){
+        console.log(response.data);
       })
     }
   }
