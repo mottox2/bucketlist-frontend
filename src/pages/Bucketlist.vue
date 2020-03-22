@@ -10,16 +10,16 @@
         ></v-text-field>
         <v-btn small v-on:click="saveBucketlist()">記録</v-btn>
       </v-row>
-      <v-row wrap justify-space-around>
-        <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
-          <v-card>
+      <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
+        <v-card class="ma-2 flexcard">
+          <p>
             {{ bucketlist.title }}
-            <v-btn small v-on:click="editBucketlist(bucketlist)"
-              >この目標を具体的にする</v-btn
-            >
-          </v-card>
-        </v-flex>
-      </v-row>
+          </p>
+          <v-btn small v-on:click="editBucketlist(bucketlist)"
+            >この目標を具体的にする</v-btn
+          >
+        </v-card>
+      </v-flex>
     </v-container>
   </v-app>
 </template>
