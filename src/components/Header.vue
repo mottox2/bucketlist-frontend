@@ -1,11 +1,9 @@
 <template>
-  <v-card
-  color="grey lighten-4"
-  flat
-  height="70px"
-  tile>
+  <v-card color="grey lighten-4" flat height="70px" tile>
     <v-toolbar>
-      <v-toolbar-title class="display-2 font-weight-black">Bucketlist</v-toolbar-title>
+      <v-toolbar-title class="display-2 font-weight-black"
+        >Bucketlist</v-toolbar-title
+      >
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn to="/">
