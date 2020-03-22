@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Bucketlist from './pages/Bucketlist'
+import BucketlistDetail from './pages/BucketlistDetail'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 
@@ -25,6 +26,11 @@ export default new Router({
         path: '/bucketlist',
         name: 'bucketlist',
         component: Bucketlist
+    },
+    {
+        path: '/bucketlist/:bucketlist_id',
+        name: 'bucketlistdetail',
+        component: BucketlistDetail
     },
     {
         path: '/signup',
