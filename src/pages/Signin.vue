@@ -1,9 +1,11 @@
 <template>
     <div>
-        <div>signin</div>
-        <input class="input" type="email" v-model="email" name="email">
-        <input class="password" type="password" v-model="password" name="password">
-        <button v-on:click="signin">サインイン</button>  
+      <div>signin</div>
+      <input class="input" type="email" v-model="email" name="email">
+      <input class="password" type="password" v-model="password" name="password">
+      <button v-on:click="signin">サインイン</button> 
+
+      <router-link to="/signup"> アカウントをお持ちではないですか？ </router-link> 
     </div>
 </template>
 
@@ -28,12 +30,14 @@ export default {
             email: this.email,
             password: this.password,
         }
-        console.log(payload)
+
         axios.post('/api/v1/token', payload).then(function(response){
             _this.token = response.data["token"]
-            console.log(_this.token)
+
+            // トークンをデコードする
             const decoded = jwt_decode(_this.token)
-            console.log(decoded)
+
+            // localStorageにaccess_tokenとuser_idを設定する
             localStorage.setItem('access_token', _this.token)
             localStorage.setItem('user_id', decoded.user_id)        
         })
