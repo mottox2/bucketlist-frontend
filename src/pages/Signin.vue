@@ -1,12 +1,53 @@
 <template>
-    <div>
-      <div>signin</div>
-      <input class="input" type="email" v-model="email" name="email">
-      <input class="password" type="password" v-model="password" name="password">
-      <button v-on:click="signin">サインイン</button> 
+  <v-app>
+    <v-container>
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="primary"
+                dark
+                flat
+              >
+              <v-toolbar-title>Login form</v-toolbar-title>
+                <v-spacer />
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="email"
+                    name="email"
+                    type="email"
+                    v-model="email"
+                  />
 
-      <router-link to="/signup"> アカウントをお持ちではないですか？ </router-link> 
-    </div>
+                  <v-text-field
+                    id="password"
+                    label="Password"
+                    name="password"
+
+                    type="password"
+                    v-model="password"
+                  />
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <router-link to="/signup"> アカウントをお持ちではないですか？ </router-link> 
+                <v-spacer />
+                <v-btn color="primary" v-on:click="signin">Login</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-app>
 </template>
 
 <script>

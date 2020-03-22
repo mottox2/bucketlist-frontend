@@ -1,15 +1,20 @@
 <template>
-  <div class="bucketlist">
-
-    <input class="input" type="title" v-model="title" name="title">
-    <button v-on:click="saveBucketlist()">せーぶ</button>
-    <ul>
-      <li v-for="(bucketlist, id) in bucketlists" :key="id">
-        {{ bucketlist.title }}
-        <button v-on:click="editBucketlist(bucketlist)">夢を具体的にする</button>
-      </li>
-    </ul>
-  </div>
+  <v-app>
+    <v-container>
+      <v-row>
+      <v-text-field class="input" type="title" v-model="title" name="title"></v-text-field>
+      <v-btn small v-on:click="saveBucketlist()">記録</v-btn>
+      </v-row>
+      <v-row wrap justify-space-around>
+        <v-flex  v-for="(bucketlist, id) in bucketlists" :key="id">
+          <v-card>
+            {{ bucketlist.title }}
+          <v-btn small  v-on:click="editBucketlist(bucketlist)">この目標を具体的にする</v-btn>
+          </v-card>
+        </v-flex>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>

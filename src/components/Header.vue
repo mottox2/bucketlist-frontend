@@ -1,25 +1,29 @@
 <template>
-  <div class="header">
+  <v-card
+  color="grey lighten-4"
+  flat
+  height="70px"
+  tile>
     <v-toolbar>
       <v-toolbar-title class="display-2 font-weight-black">Bucketlist</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn>
-          <router-link to="/"> home </router-link>
+        <v-btn to="/">
+          home
         </v-btn>
-        <v-btn>
-          <router-link to="/profile"> profile </router-link>
+        <v-btn to="/profile">
+          profile
         </v-btn>
-        <v-btn>
-          <router-link to="/bucketlist"> bucketlist </router-link>
+        <v-btn to="/bucketlist">
+          bucketlist
         </v-btn>
-        <v-btn>
-          <router-link to="/signin"> signin </router-link>
+        <v-btn to="/signin">
+          signin
         </v-btn>
-        <v-btn>
-          <router-link to="/signup"> signup </router-link>
+        <v-btn to="/signup">
+          signup
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-  </div>
+  </v-card>
 </template>

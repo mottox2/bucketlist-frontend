@@ -1,14 +1,24 @@
 <template>
-  <div class="bucketlist">
-    <router-link to="/bucketlist"> 100個の目標へ戻る </router-link>
-
-    <input class="input" type="title" v-model="bucketlist.title" name="title">
-    <input class="input" type="text" v-model="bucketlist.text" name="text">
-
-    <button v-on:click="updateBucketlist(bucketlist)">update</button>
-    <button v-on:click="deleteBucketlist(bucketlist)">del</button>
-    <router-link to="/bucketlist"> 100個の目標へ戻る </router-link>
-  </div>
+  <v-app>
+    <v-container>
+      <v-row justify="center">
+    <v-btn to="/bucketlist"> 100個の目標へ戻る </v-btn>
+      </v-row>
+      <v-row>
+        <v-card-text align="center">
+          <v-form>
+            <v-text-field label="目標" type="title" v-model="title" name="title"/>
+            <v-text-field label="具体的に！" type="text" v-model="text" name="text"/>
+          </v-form>
+          <v-btn color="primary" v-on:click="updateBucketlist()">目標を更新</v-btn>
+          <v-btn color="error" v-on:click.ctrl="deleteBucketlist()">目標を削除…</v-btn>
+        </v-card-text>
+      </v-row>
+      <v-row justify="center">
+        <v-btn to="/bucketlist"> 100個の目標へ戻る </v-btn>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -20,7 +30,8 @@ export default {
 
   data(){
     return {
-      bucketlist:{},
+      title:"",
+      text:""
     }
   },created: function(){
     this.bucketlist = this.getBucketlist()
@@ -38,31 +49,29 @@ export default {
       }
       axios.get('/api/v1/users/'+ user_id +'/bucketlists/' + bucketlist_id,auth).then(function(response){
 
-        _this.bucketlist = response.data
-        console.log(_this.bucketlist);
+        _this.title = response.data.title
+        _this.text = response.data.text        
       })
     },
-    updateBucketlist(bucketlist){
+    updateBucketlist(){
       var token = localStorage.getItem('access_token')
       var user_id = localStorage.getItem('user_id')
-      var bucketlist_id = bucketlist.id
+      var bucketlist_id = this.$route.params['bucketlist_id']
       let data = {
-          title:this.bucketlist.title,
-          text:this.bucketlist.text,
+          title:this.title,
+          text:this.text,
           user_id: localStorage.getItem('user_id')
       }
-      console.log(data);
-      axios.put('/api/v1/users/'+ user_id +'/bucketlists/'+ bucketlist_id,data,{headers:{'Authorization': 'JWT ' + token}}).then(function(response){
-        console.log(response.data);
+      axios.put('/api/v1/users/'+ user_id +'/bucketlists/'+ bucketlist_id,data,{headers:{'Authorization': 'JWT ' + token}}).then(function(){
+        router.push({ name: 'bucketlist'})
       })
     },
-    deleteBucketlist(bucketlist){
+    deleteBucketlist(){
       var token = localStorage.getItem('access_token')
       var user_id = localStorage.getItem('user_id')
-      var bucketlist_id = bucketlist.id
+      var bucketlist_id = this.$route.params['bucketlist_id']
 
-      axios.delete('/api/v1/users/'+ user_id +'/bucketlists/'+ bucketlist_id,{headers:{'Authorization': 'JWT ' + token}}).then(function(response){
-        console.log(response.data);
+      axios.delete('/api/v1/users/'+ user_id +'/bucketlists/'+ bucketlist_id,{headers:{'Authorization': 'JWT ' + token}}).then(function(){
         router.push({ name: 'bucketlist'})
       })
     }
