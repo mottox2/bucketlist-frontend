@@ -53,7 +53,7 @@ export default {
       email: "",
       password: "",
       new_password: "",
-      confirmation_password: ""
+      confirmation_password: "",
     };
   },
   methods: {
@@ -63,10 +63,10 @@ export default {
       var user_id = localStorage.getItem("user_id");
       const auth = {
         headers: {
-          Authorization: "JWT " + token
-        }
+          Authorization: "JWT " + token,
+        },
       };
-      axios.get("/api/v1/users/" + user_id, auth).then(function(response) {
+      axios.get("/api/v1/users/" + user_id, auth).then(function (response) {
         _this.username = response.data.username;
         _this.email = response.data.email;
       });
@@ -77,7 +77,7 @@ export default {
       var data = {
         username: this.username,
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       if (
         this.new_password != "" &&
@@ -88,9 +88,9 @@ export default {
       }
       axios
         .put("/api/v1/users/" + user_id, data, {
-          headers: { Authorization: "JWT " + token }
+          headers: { Authorization: "JWT " + token },
         })
-        .then(function(response) {
+        .then(function (response) {
           console.log(response.data);
         });
     },
@@ -100,16 +100,16 @@ export default {
 
       axios
         .delete("/api/v1/users/" + user_id, {
-          headers: { Authorization: "JWT " + token }
+          headers: { Authorization: "JWT " + token },
         })
-        .then(function(response) {
+        .then(function (response) {
           console.log(response.data);
           router.push({ name: "home" });
         });
-    }
+    },
   },
-  created: function() {
+  created: function () {
     this.profiles = this.getProfile();
-  }
+  },
 };
 </script>

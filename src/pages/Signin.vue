@@ -51,7 +51,7 @@ export default {
       user_id: "",
       email: "",
       password: "",
-      token: ""
+      token: "",
     };
   },
   methods: {
@@ -59,10 +59,10 @@ export default {
       var _this = this;
       const payload = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
 
-      axios.post("/api/v1/token", payload).then(function(response) {
+      axios.post("/api/v1/token", payload).then(function (response) {
         _this.token = response.data["token"];
 
         // トークンをデコードする
@@ -72,8 +72,8 @@ export default {
         localStorage.setItem("access_token", _this.token);
         localStorage.setItem("user_id", decoded.user_id);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

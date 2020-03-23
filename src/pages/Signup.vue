@@ -56,7 +56,7 @@ export default {
     return {
       email: "",
       password: "",
-      confirmation: ""
+      confirmation: "",
     };
   },
   methods: {
@@ -64,17 +64,17 @@ export default {
       if (this.password === this.confirmation) {
         var data = {
           email: this.email,
-          password: this.password
+          password: this.password,
         };
         console.log(data);
-        axios.post("/api/v1/users/", data).then(function(response) {
+        axios.post("/api/v1/users/", data).then(function (response) {
           console.log(response);
         });
       } else {
         console.log("だめです");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
