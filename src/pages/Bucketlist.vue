@@ -10,16 +10,22 @@
         ></v-text-field>
         <v-btn small v-on:click="saveBucketlist()">記録</v-btn>
       </v-row>
-      <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
-        <v-card class="ma-2 flexcard">
-          <p>
-            {{ bucketlist.title }}
-          </p>
-          <v-btn small v-on:click="editBucketlist(bucketlist)"
-            >この目標を具体的にする</v-btn
-          >
-        </v-card>
-      </v-flex>
+      <v-layout wrap>
+        <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
+          <v-card color="gray" width="200px" height="100px">
+            <v-card-text align="center">
+              {{ bucketlist.title }}
+            </v-card-text>
+            <v-card-actions align="center">
+              <v-spacer></v-spacer>
+              <v-btn small v-on:click="editBucketlist(bucketlist)"
+                >この目標を具体的にする</v-btn
+              >
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
   </v-app>
 </template>
@@ -35,40 +41,40 @@ export default {
     return {
       bucketlists: [],
       title: "",
-      text: ""
+      text: "",
     };
   },
   methods: {
-    getBucketlist: function() {
+    getBucketlist: function () {
       var _this = this;
       var token = localStorage.getItem("access_token");
       var user_id = localStorage.getItem("user_id");
       const auth = {
         headers: {
-          Authorization: "JWT " + token
-        }
+          Authorization: "JWT " + token,
+        },
       };
       axios
         .get("/api/v1/users/" + user_id + "/bucketlists", auth)
-        .then(function(response) {
+        .then(function (response) {
           console.log(response.data);
           return (_this.bucketlists = response.data);
         });
     },
-    saveBucketlist: function() {
+    saveBucketlist: function () {
       var _this = this;
       var token = localStorage.getItem("access_token");
       var user_id = localStorage.getItem("user_id");
       var data = {
         title: _this.title,
         text: "text",
-        user_id: localStorage.getItem("user_id")
+        user_id: localStorage.getItem("user_id"),
       };
       axios
         .post("/api/v1/users/" + user_id + "/bucketlists", data, {
-          headers: { Authorization: "JWT " + token }
+          headers: { Authorization: "JWT " + token },
         })
-        .then(function(response) {
+        .then(function (response) {
           console.log(response.data);
           _this.title = "";
           _this.bucketlists = _this.getBucketlist();
@@ -78,12 +84,12 @@ export default {
       var bucketlist_id = bucketlist.id;
       router.push({
         name: "bucketlistdetail",
-        params: { bucketlist_id: bucketlist_id }
+        params: { bucketlist_id: bucketlist_id },
       });
-    }
+    },
   },
-  created: function() {
+  created: function () {
     this.bucketlists = this.getBucketlist();
-  }
+  },
 };
 </script>
