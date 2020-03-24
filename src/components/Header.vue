@@ -5,24 +5,11 @@
     >
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/">
-        home
-      </v-btn>
-      <v-btn to="/bucketlist">
-        bucketlist
-      </v-btn>
-      <v-btn to="/signin">
-        signin
-      </v-btn>
-      <v-btn to="/signup">
-        signup
-      </v-btn>
-      <v-menu offset-y>
+      <v-menu offset-y v-if="isLogin === 'True'">
         <template v-slot:activator="{ on }">
           <v-btn icon large v-on="on">
             <v-avatar size="32px" item>
-              <v-img
-                src="../assets/logo.png"
+              <v-img src="../assets/logo.png"
             /></v-avatar>
           </v-btn>
         </template>
@@ -44,5 +31,23 @@
         </v-list>
       </v-menu>
     </v-toolbar-items>
+    <v-toolbar-items v-if="isLogin === 'False'">
+      <v-btn to="/signin">
+        signin
+      </v-btn>
+      <v-btn to="/signup">
+        signup
+      </v-btn>
+    </v-toolbar-items>
   </v-app-bar>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isLogin: "True",
+    };
+  },
+};
+</script>
