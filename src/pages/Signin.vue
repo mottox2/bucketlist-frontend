@@ -65,12 +65,11 @@ export default {
       axios.post("/api/v1/token", payload).then(function (response) {
         _this.token = response.data["token"];
 
-        // トークンをデコードする
         const decoded = jwt_decode(_this.token);
 
-        // localStorageにaccess_tokenとuser_idを設定する
         localStorage.setItem("access_token", _this.token);
         localStorage.setItem("user_id", decoded.user_id);
+        this.$store.setUserIdAction(decoded.user_id)
       });
     },
   },
