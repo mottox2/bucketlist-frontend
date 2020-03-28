@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 
 
 axios.defaults.baseURL = process.env.VUE_APP_BACKENDHOST;
-console.log(axios.defaults.baseURL)
+
 new Vue({
   store,
   router,
