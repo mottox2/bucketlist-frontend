@@ -41,8 +41,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import jwt_decode from "jwt-decode";
+
 
 export default {
   name: "signin",
@@ -56,21 +55,12 @@ export default {
   },
   methods: {
     signin() {
-      var _this = this;
       const payload = {
         email: this.email,
         password: this.password,
       };
 
-      axios.post("/api/v1/token", payload).then(function (response) {
-        _this.token = response.data["token"];
-
-        const decoded = jwt_decode(_this.token);
-
-        localStorage.setItem("access_token", _this.token);
-        localStorage.setItem("user_id", decoded.user_id);
-        this.$store.setUserIdAction(decoded.user_id)
-      });
+      this.$store.dispatch("setUserId", payload);
     },
   },
 };

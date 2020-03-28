@@ -4,8 +4,8 @@
       >Bucketlist</v-toolbar-title
     >
     <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <v-menu offset-y v-if="userId != ''">
+    <v-toolbar-items v-if="userId != ''">
+      <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon large v-on="on">
             <v-avatar size="32px" item>
@@ -31,7 +31,7 @@
         </v-list>
       </v-menu>
     </v-toolbar-items>
-    <v-toolbar-items v-if="userId === ''">
+    <v-toolbar-items v-else-if="userId == ''">
       <v-btn to="/signin">
         signin
       </v-btn>
@@ -43,12 +43,11 @@
 </template>
 
 <script>
-
 export default {
-  computed :{
-    userId : function(){
-      return this.$store.getters.userId
-    }
-  }
+  computed: {
+    userId: function () {
+      return this.$store.getters.userId;
+    },
+  },
 };
 </script>
