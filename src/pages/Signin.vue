@@ -5,7 +5,7 @@
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>Login form</v-toolbar-title>
+              <v-toolbar-title>ログイン</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
             <v-card-text>
@@ -27,11 +27,11 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
+              <v-btn color="primary" v-on:click="signin">Login</v-btn>
+              <v-spacer />
               <router-link to="/signup">
                 アカウントをお持ちではないですか？
               </router-link>
-              <v-spacer />
-              <v-btn color="primary" v-on:click="signin">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -41,16 +41,12 @@
 </template>
 
 <script>
-
-
 export default {
   name: "signin",
   data() {
     return {
-      user_id: "",
       email: "",
       password: "",
-      token: "",
     };
   },
   methods: {
@@ -65,5 +61,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
