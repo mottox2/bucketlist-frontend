@@ -66,12 +66,13 @@ export default {
           Authorization: "JWT " + token,
         },
       };
-      axios.get("/api/v1/users/" + user_id, auth).then(function (response) {
+      axios.get("/api/v1/users/" + userId, auth).then(function (response) {
         _this.username = response.data.username;
         _this.email = response.data.email;
       });
     },
     updateProfiles() {
+      var _this = this;
       var token = _this.token;
       var userId = _this.userId;
       var data = {
@@ -87,7 +88,7 @@ export default {
         data.password = this.new_password;
       }
       axios
-        .put("/api/v1/users/" + user_id, data, {
+        .put("/api/v1/users/" + userId, data, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function (response) {
@@ -95,11 +96,12 @@ export default {
         });
     },
     deleteProfiles() {
+      var _this = this;
       var token = _this.token;
       var userId = _this.userId;
 
       axios
-        .delete("/api/v1/users/" + user_id, {
+        .delete("/api/v1/users/" + userId, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function (response) {
@@ -119,6 +121,6 @@ export default {
     token: function () {
       return this.$store.getters.token;
     },
-  }
+  },
 };
 </script>

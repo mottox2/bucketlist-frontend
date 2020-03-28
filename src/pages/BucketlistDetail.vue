@@ -63,24 +63,25 @@ export default {
         },
       };
       axios
-        .get("/api/v1/users/" + user_id + "/bucketlists/" + bucketlist_id, auth)
+        .get("/api/v1/users/" + userId + "/bucketlists/" + bucketlist_id, auth)
         .then(function (response) {
           _this.title = response.data.title;
           _this.text = response.data.text;
         });
     },
     updateBucketlist() {
+      var _this = this;
       var token = _this.token;
       var userId = _this.userId;
       var bucketlist_id = this.$route.params["bucketlist_id"];
       let data = {
         title: this.title,
         text: this.text,
-        user_id: localStorage.getItem("user_id"),
+        userId: _this.userId,
       };
       axios
         .put(
-          "/api/v1/users/" + user_id + "/bucketlists/" + bucketlist_id,
+          "/api/v1/users/" + userId + "/bucketlists/" + bucketlist_id,
           data,
           { headers: { Authorization: "JWT " + token } }
         )
@@ -89,12 +90,13 @@ export default {
         });
     },
     deleteBucketlist() {
+      var _this = this;
       var token = _this.token;
       var userId = _this.userId;
       var bucketlist_id = this.$route.params["bucketlist_id"];
 
       axios
-        .delete("/api/v1/users/" + user_id + "/bucketlists/" + bucketlist_id, {
+        .delete("/api/v1/users/" + userId + "/bucketlists/" + bucketlist_id, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function () {
@@ -110,6 +112,6 @@ export default {
     token: function () {
       return this.$store.getters.token;
     },
-  }
+  },
 };
 </script>

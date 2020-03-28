@@ -78,10 +78,10 @@ export default {
       var data = {
         title: _this.title,
         text: "text",
-        user_id: localStorage.getItem("user_id"),
+        userId: userId,
       };
       axios
-        .post("/api/v1/users/" + user_id + "/bucketlists", data, {
+        .post("/api/v1/users/" + userId + "/bucketlists", data, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function (response) {
