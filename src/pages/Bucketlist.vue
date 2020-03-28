@@ -73,8 +73,8 @@ export default {
     },
     saveBucketlist: function () {
       var _this = this;
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       var data = {
         title: _this.title,
         text: "text",

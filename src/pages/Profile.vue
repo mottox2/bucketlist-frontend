@@ -59,8 +59,8 @@ export default {
   methods: {
     getProfile() {
       var _this = this;
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       const auth = {
         headers: {
           Authorization: "JWT " + token,
@@ -72,8 +72,8 @@ export default {
       });
     },
     updateProfiles() {
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       var data = {
         username: this.username,
         email: this.email,
@@ -95,8 +95,8 @@ export default {
         });
     },
     deleteProfiles() {
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
 
       axios
         .delete("/api/v1/users/" + user_id, {
@@ -111,5 +111,14 @@ export default {
   created: function () {
     this.profiles = this.getProfile();
   },
+  computed: {
+    userId: function () {
+      console.log(this.$store.getters.userId);
+      return this.$store.getters.userId;
+    },
+    token: function () {
+      return this.$store.getters.token;
+    },
+  }
 };
 </script>

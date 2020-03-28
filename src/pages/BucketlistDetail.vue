@@ -54,8 +54,8 @@ export default {
   methods: {
     getBucketlist() {
       var _this = this;
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       var bucketlist_id = this.$route.params["bucketlist_id"];
       const auth = {
         headers: {
@@ -70,8 +70,8 @@ export default {
         });
     },
     updateBucketlist() {
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       var bucketlist_id = this.$route.params["bucketlist_id"];
       let data = {
         title: this.title,
@@ -89,8 +89,8 @@ export default {
         });
     },
     deleteBucketlist() {
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       var bucketlist_id = this.$route.params["bucketlist_id"];
 
       axios
@@ -102,5 +102,14 @@ export default {
         });
     },
   },
+  computed: {
+    userId: function () {
+      console.log(this.$store.getters.userId);
+      return this.$store.getters.userId;
+    },
+    token: function () {
+      return this.$store.getters.token;
+    },
+  }
 };
 </script>
