@@ -5,7 +5,7 @@
     >
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-menu offset-y v-if="isLogin === 'True'">
+      <v-menu offset-y v-if="userId != ''">
         <template v-slot:activator="{ on }">
           <v-btn icon large v-on="on">
             <v-avatar size="32px" item>
@@ -31,7 +31,7 @@
         </v-list>
       </v-menu>
     </v-toolbar-items>
-    <v-toolbar-items v-if="isLogin === 'False'">
+    <v-toolbar-items v-if="userId === ''">
       <v-btn to="/signin">
         signin
       </v-btn>
@@ -43,11 +43,12 @@
 </template>
 
 <script>
+
 export default {
-  data() {
-    return {
-      isLogin: "True",
-    };
-  },
+  computed :{
+    userId : function(){
+      return this.$store.getters.userId
+    }
+  }
 };
 </script>

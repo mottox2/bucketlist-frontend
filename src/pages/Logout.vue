@@ -41,11 +41,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 
 export default {
-  name: "signin",
+  name: "logout",
   data() {
     return {
       user_id: "",
@@ -55,7 +53,7 @@ export default {
     };
   },
   methods: {
-    signin() {
+    logout() {
       var _this = this;
       const payload = {
         email: this.email,
@@ -69,7 +67,7 @@ export default {
 
         localStorage.setItem("access_token", _this.token);
         localStorage.setItem("user_id", decoded.user_id);
-        this.$store.setUserIdAction(decoded.user_id)
+        this.$store.commit("setUserId",decoded.user_id)
       });
     },
   },

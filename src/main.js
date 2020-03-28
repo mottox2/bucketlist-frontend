@@ -10,12 +10,14 @@ Vue.use(Vuetify);
 import axios from 'axios';
 import vuetify from './plugins/vuetify';
 
+import store from "./store"
 
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = "http://localhost:8000";
 
 new Vue({
+  store,
   router,
   vuetify,
   render: h => h(App)
