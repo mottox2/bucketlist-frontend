@@ -56,7 +56,7 @@ export default {
         password: this.password,
       };
 
-      this.$store.dispatch("setUserId", payload);
+      this.$store.dispatch("setUser", payload);
     },
   },
 };

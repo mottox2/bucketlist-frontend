@@ -44,18 +44,28 @@ export default {
       text: "",
     };
   },
+  computed: {
+    userId: function () {
+      console.log(this.$store.getters.userId);
+      return this.$store.getters.userId;
+    },
+    token: function () {
+      return this.$store.getters.token;
+    },
+  },
   methods: {
     getBucketlist: function () {
       var _this = this;
-      var token = localStorage.getItem("access_token");
-      var user_id = localStorage.getItem("user_id");
+      var token = _this.token;
+      var userId = _this.userId;
       const auth = {
         headers: {
           Authorization: "JWT " + token,
         },
       };
+      console.log(userId);
       axios
-        .get("/api/v1/users/" + user_id + "/bucketlists", auth)
+        .get("/api/v1/users/" + userId + "/bucketlists", auth)
         .then(function (response) {
           console.log(response.data);
           return (_this.bucketlists = response.data);
