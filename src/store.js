@@ -4,7 +4,7 @@ Vue.use(Vuex);
 
 export default {
     state: {
-        userId : ""
+        userId : ''
     },
     mutations:{
         setUserId(newValue){
@@ -17,10 +17,10 @@ export default {
         }
     },
     getters: {
-        userId: state => {
-            console.log(state.userId)
+        userId: function()  {
+            console.log(this.state.userId)
 
-            return state.userId
+            return this.state.userId
         }
     }
 }
