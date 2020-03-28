@@ -14,8 +14,9 @@ import store from "./store"
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = "http://localhost:8000";
 
+axios.defaults.baseURL = process.env.VUE_APP_BACKENDHOST;
+console.log(axios.defaults.baseURL)
 new Vue({
   store,
   router,

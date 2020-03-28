@@ -5,7 +5,7 @@
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
-              <v-toolbar-title>New User</v-toolbar-title>
+              <v-toolbar-title>新規ユーザ登録</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
             <v-card-text>
@@ -34,11 +34,11 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
+              <v-btn color="primary" v-on:click="signup">signup</v-btn>
+              <v-spacer />
               <router-link to="/signin">
                 アカウントをお持ちの方はこちら
               </router-link>
-              <v-spacer />
-              <v-btn color="primary" v-on:click="signup">signup</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -66,7 +66,7 @@ export default {
           email: this.email,
           password: this.password,
         };
-        console.log(data);
+
         axios.post("/api/v1/users/", data).then(function (response) {
           console.log(response);
         });
