@@ -16,6 +16,13 @@
         <v-list>
           <v-list-item>
             <v-list-item-title
+              ><router-link to="/bucketlist">
+                bucketlist
+              </router-link></v-list-item-title
+            >
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title
               ><router-link to="/profile">
                 profile
               </router-link></v-list-item-title

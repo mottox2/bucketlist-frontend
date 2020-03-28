@@ -77,7 +77,7 @@ export default {
       let data = {
         title: this.title,
         text: this.text,
-        userId: _this.userId,
+        user_id: _this.userId,
       };
       axios
         .put(

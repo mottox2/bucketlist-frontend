@@ -46,7 +46,6 @@ export default {
   },
   computed: {
     userId: function () {
-      console.log(this.$store.getters.userId);
       return this.$store.getters.userId;
     },
     token: function () {
@@ -74,20 +73,25 @@ export default {
     saveBucketlist: function () {
       var _this = this;
       var token = _this.token;
-      var userId = _this.userId;
+      var userId1 = _this.userId;
       var data = {
         title: _this.title,
         text: "text",
-        userId: userId,
+        user_id: userId1,
       };
+      console.log(data)
       axios
-        .post("/api/v1/users/" + userId + "/bucketlists", data, {
+        .post("/api/v1/users/" + userId1 + "/bucketlists", data, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function (response) {
           console.log(response.data);
           _this.title = "";
           _this.bucketlists = _this.getBucketlist();
+        })
+        .catch(function(error){
+          console.log("error")
+          console.log(error)
         });
     },
     editBucketlist(bucketlist) {
