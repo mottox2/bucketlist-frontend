@@ -62,16 +62,16 @@ export default {
   methods: {
     signup() {
       if (this.password === this.confirmation) {
-        var data = {
+        const payload = {
           email: this.email,
           password: this.password,
         };
 
-        axios.post("/api/v1/users/", data).then(function (response) {
-          console.log(response);
+        axios.post("/api/v1/users/", payload).then(function () {
+          console.log("done");
         });
       } else {
-        console.log("だめです");
+        console.log("no");
       }
     },
   },

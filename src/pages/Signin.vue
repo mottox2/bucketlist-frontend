@@ -52,8 +52,8 @@ export default {
   methods: {
     signin() {
       const payload = {
-        email: this.email,
-        password: this.password,
+        "email": this.email,
+        "password": this.password,
       };
 
       this.$store.dispatch("setUser", payload);

@@ -35,9 +35,9 @@ export default new Vuex.Store({
     },
     actions: {
         setUser: function(context,payload){
-
+            console.log(typeof(payload))
             axios.post("/api/v1/token", payload).then(function (response) {
-                let token = response.data["token"];
+                const token = response.data["token"];
                 context.commit("setToken", token); 
                 const decoded = jwt_decode(token);
                 context.commit("setUserId", decoded.user_id);

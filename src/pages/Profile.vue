@@ -58,9 +58,9 @@ export default {
   },
   methods: {
     getProfile() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
       const auth = {
         headers: {
           Authorization: "JWT " + token,
@@ -72,10 +72,10 @@ export default {
       });
     },
     updateProfiles() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
-      var data = {
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
+      const data = {
         username: this.username,
         email: this.email,
         password: this.password,
@@ -91,21 +91,19 @@ export default {
         .put("/api/v1/users/" + userId, data, {
           headers: { Authorization: "JWT " + token },
         })
-        .then(function (response) {
-          console.log(response.data);
+        .then(function () {
         });
     },
     deleteProfiles() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
 
       axios
         .delete("/api/v1/users/" + userId, {
           headers: { Authorization: "JWT " + token },
         })
-        .then(function (response) {
-          console.log(response.data);
+        .then(function () {
           router.push({ name: "home" });
         });
     },
@@ -115,7 +113,6 @@ export default {
   },
   computed: {
     userId: function () {
-      console.log(this.$store.getters.userId);
       return this.$store.getters.userId;
     },
     token: function () {

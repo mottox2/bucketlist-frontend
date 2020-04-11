@@ -54,48 +54,43 @@ export default {
   },
   methods: {
     getBucketlist: function () {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
       const auth = {
         headers: {
           Authorization: "JWT " + token,
         },
       };
-      console.log(userId);
       axios
         .get("/api/v1/users/" + userId + "/bucketlists", auth)
         .then(function (response) {
-          console.log(response.data);
           return (_this.bucketlists = response.data);
         });
     },
     saveBucketlist: function () {
-      var _this = this;
-      var token = _this.token;
-      var userId1 = _this.userId;
-      var data = {
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
+      const data = {
         title: _this.title,
         text: "text",
-        user_id: userId1,
+        user_id: userId,
       };
-      console.log(data)
+
       axios
-        .post("/api/v1/users/" + userId1 + "/bucketlists", data, {
+        .post("/api/v1/users/" + userId + "/bucketlists", data, {
           headers: { Authorization: "JWT " + token },
         })
-        .then(function (response) {
-          console.log(response.data);
+        .then(function () {
           _this.title = "";
           _this.bucketlists = _this.getBucketlist();
         })
-        .catch(function(error){
-          console.log("error")
-          console.log(error)
+        .catch(function(){
         });
     },
     editBucketlist(bucketlist) {
-      var bucketlist_id = bucketlist.id;
+      const bucketlist_id = bucketlist.id;
       router.push({
         name: "bucketlistdetail",
         params: { bucketlist_id: bucketlist_id },

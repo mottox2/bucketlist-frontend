@@ -53,10 +53,10 @@ export default {
   },
   methods: {
     getBucketlist() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
-      var bucketlist_id = this.$route.params["bucketlist_id"];
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
+      const bucketlist_id = this.$route.params["bucketlist_id"];
       const auth = {
         headers: {
           Authorization: "JWT " + token,
@@ -70,10 +70,10 @@ export default {
         });
     },
     updateBucketlist() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
-      var bucketlist_id = this.$route.params["bucketlist_id"];
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
+      const bucketlist_id = this.$route.params["bucketlist_id"];
       let data = {
         title: this.title,
         text: this.text,
@@ -90,10 +90,10 @@ export default {
         });
     },
     deleteBucketlist() {
-      var _this = this;
-      var token = _this.token;
-      var userId = _this.userId;
-      var bucketlist_id = this.$route.params["bucketlist_id"];
+      const _this = this;
+      const token = _this.token;
+      const userId = _this.userId;
+      const bucketlist_id = this.$route.params["bucketlist_id"];
 
       axios
         .delete("/api/v1/users/" + userId + "/bucketlists/" + bucketlist_id, {
@@ -106,7 +106,6 @@ export default {
   },
   computed: {
     userId: function () {
-      console.log(this.$store.getters.userId);
       return this.$store.getters.userId;
     },
     token: function () {
