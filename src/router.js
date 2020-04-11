@@ -6,6 +6,7 @@ import Bucketlist from './pages/Bucketlist'
 import BucketlistDetail from './pages/BucketlistDetail'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
+import SigninComplete from './pages/SignupComplete'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
         path: '/signin',
         name: 'signin',
         component: Signin
+    },
+    {
+        path: '/signup-complete/:token',
+        name: 'signup-complete',
+        component: SigninComplete
     }
   ]
 })
