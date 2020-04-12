@@ -41,11 +41,11 @@ export default new Vuex.Store({
                 context.commit("setToken", token); 
                 const decoded = jwt_decode(token);
                 context.commit("setUserId", decoded.user_id);
-              });
-            },
+            });
         },
-        plugins: [createPersistedState(
-            { storage: window.sessionStorage },
-            
-        )]
+    },
+    plugins: [createPersistedState(
+        { storage: window.sessionStorage },
+        
+    )]
 })
