@@ -26,6 +26,10 @@
                 />
               </v-form>
             </v-card-text>
+            <v-card-text v-if="error_message != ''">
+              ログインが失敗しました。メールアドレスまたはパスワードを確認してください。
+            </v-card-text>
+
             <v-card-actions>
               <v-btn color="primary" v-on:click="signin">Login</v-btn>
               <v-spacer />
@@ -41,22 +45,32 @@
 </template>
 
 <script>
+import router from "../router";
+
 export default {
   name: "signin",
   data() {
     return {
       email: "",
       password: "",
+      error_message: "",
     };
   },
   methods: {
     signin() {
       const payload = {
-        "email": this.email,
-        "password": this.password,
+        email: this.email,
+        password: this.password,
       };
-
       this.$store.dispatch("setUser", payload);
+
+      if (this.token != "") {
+        router.push({ name: "bucketlist" });
+      } else if (this.token === "") {
+        this.error_message =
+          "ログインが失敗しました。メールアドレスまたはパスワードを確認してください。";
+        console.log("error");
+      }
     },
   },
 };

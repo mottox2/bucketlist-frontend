@@ -91,8 +91,7 @@ export default {
         .put("/api/v1/users/" + userId, data, {
           headers: { Authorization: "JWT " + token },
         })
-        .then(function () {
-        });
+        .then(function () {});
     },
     deleteProfiles() {
       const _this = this;

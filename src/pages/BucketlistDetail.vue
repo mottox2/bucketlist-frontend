@@ -1,9 +1,6 @@
 <template>
   <v-app>
     <v-container>
-      <v-row justify="center">
-        <v-btn to="/bucketlist"> 100個の目標へ戻る </v-btn>
-      </v-row>
       <v-row>
         <v-card-text align="center">
           <v-form>
@@ -20,12 +17,25 @@
               name="text"
             />
           </v-form>
+
           <v-btn color="primary" v-on:click="updateBucketlist()"
             >目標を更新</v-btn
           >
-          <v-btn color="error" v-on:click.ctrl="deleteBucketlist()"
-            >目標を削除…</v-btn
-          >
+          <v-dialog v-model="dialog" persistent max-width="290">
+            <template v-slot:activator="{ on }">
+              <v-btn color="error" v-on="on">目標を削除…</v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">本当に削除しますか？</v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="error" v-on:click="deleteBucketlist()"
+                  >削除する…</v-btn
+                >
+                <v-btn @click="dialog = false">やっぱりやめる</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-card-text>
       </v-row>
       <v-row justify="center">
@@ -46,10 +56,8 @@ export default {
     return {
       title: "",
       text: "",
+      dialog: false,
     };
-  },
-  created: function () {
-    this.bucketlist = this.getBucketlist();
   },
   methods: {
     getBucketlist() {
@@ -74,7 +82,7 @@ export default {
       const token = _this.token;
       const userId = _this.userId;
       const bucketlist_id = this.$route.params["bucketlist_id"];
-      let data = {
+      let payload = {
         title: this.title,
         text: this.text,
         user_id: _this.userId,
@@ -82,7 +90,7 @@ export default {
       axios
         .put(
           "/api/v1/users/" + userId + "/bucketlists/" + bucketlist_id,
-          data,
+          payload,
           { headers: { Authorization: "JWT " + token } }
         )
         .then(function () {
@@ -111,6 +119,9 @@ export default {
     token: function () {
       return this.$store.getters.token;
     },
+  },
+  created: function () {
+    this.bucketlist = this.getBucketlist();
   },
 };
 </script>

@@ -12,7 +12,7 @@
       </v-row>
       <v-layout wrap>
         <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
-          <v-card color="gray" width="200px" height="100px">
+          <v-card class="my-1" color="gray" width="200px" height="100px">
             <v-card-text align="center">
               {{ bucketlist.title }}
             </v-card-text>
@@ -72,22 +72,21 @@ export default {
       const _this = this;
       const token = _this.token;
       const userId = _this.userId;
-      const data = {
+      const payload = {
         title: _this.title,
-        text: "text",
+        text: "テスト",
         user_id: userId,
       };
 
       axios
-        .post("/api/v1/users/" + userId + "/bucketlists", data, {
+        .post("/api/v1/users/" + userId + "/bucketlists", payload, {
           headers: { Authorization: "JWT " + token },
         })
         .then(function () {
           _this.title = "";
           _this.bucketlists = _this.getBucketlist();
         })
-        .catch(function(){
-        });
+        .catch(function () {});
     },
     editBucketlist(bucketlist) {
       const bucketlist_id = bucketlist.id;

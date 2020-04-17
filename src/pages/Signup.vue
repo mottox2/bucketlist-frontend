@@ -33,6 +33,9 @@
                 />
               </v-form>
             </v-card-text>
+            <v-card-text v-if="error_message != ''">
+              {{ error_message }}
+            </v-card-text>
             <v-card-actions>
               <v-btn color="primary" v-on:click="signup">signup</v-btn>
               <v-spacer />
@@ -57,6 +60,7 @@ export default {
       email: "",
       password: "",
       confirmation: "",
+      error_message: "",
     };
   },
   methods: {
@@ -71,6 +75,7 @@ export default {
           console.log("done");
         });
       } else {
+        this.error_message = "メールアドレスが一致しません";
         console.log("no");
       }
     },

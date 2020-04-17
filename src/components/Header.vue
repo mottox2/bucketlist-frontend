@@ -1,56 +1,53 @@
 <template>
-  <v-app-bar>
+  <v-app-bar color="primary">
     <v-toolbar-title class="display-2 font-weight-black"
-      >Bucketlist</v-toolbar-title
+      ><router-link to="/">Bucketlist</router-link></v-toolbar-title
     >
     <v-spacer></v-spacer>
     <v-toolbar-items v-if="userId != ''">
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon large v-on="on">
-            <v-avatar size="32px" item>
-              <v-img src="../assets/logo.png"
+            <v-avatar size="24px" item>
+              <v-img src="../../static/star.png"
             /></v-avatar>
           </v-btn>
         </template>
         <v-list>
-          <v-list-item>
-            <v-list-item-title
-              ><router-link to="/bucketlist">
-                bucketlist
-              </router-link></v-list-item-title
-            >
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title
-              ><router-link to="/profile">
-                profile
-              </router-link></v-list-item-title
-            >
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title
-              ><router-link to="/logout">
-                logout
-              </router-link></v-list-item-title
-            >
+          <v-list-item v-for="menu in menus" :key="menu">
+            <v-list-item-content>
+              <v-list-item-title
+                ><router-link :to="menu.url">{{
+                  menu.name
+                }}</router-link></v-list-item-title
+              >
+            </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-menu>
     </v-toolbar-items>
-    <v-toolbar-items v-else-if="userId == ''">
-      <v-btn to="/signin">
+    <div v-else-if="userId == ''">
+      <v-btn text outlined to="/signin">
         signin
       </v-btn>
-      <v-btn to="/signup">
+      <v-btn text outlined to="/signup">
         signup
       </v-btn>
-    </v-toolbar-items>
+    </div>
   </v-app-bar>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      menus: [
+        { name: "bucketlist", url: "/bucketlist" },
+        { name: "profile", url: "/profile" },
+        { name: "logout", url: "/logout" },
+      ],
+    };
+  },
   computed: {
     userId: function () {
       return this.$store.getters.userId;

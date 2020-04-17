@@ -18,7 +18,7 @@ export default {
       axios.get("/api/v1/users/complete/" + token).then(function () {
         router.push({ name: "bucketlist" });
       });
-    }
+    },
   },
   created: function () {
     this.signup_complete();
