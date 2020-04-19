@@ -11,20 +11,19 @@
         <v-btn small v-on:click="saveBucketlist()">記録</v-btn>
       </v-row>
       <v-layout wrap>
-        <v-flex v-for="(bucketlist, id) in bucketlists" :key="id">
-          <v-card class="my-1" color="gray" width="200px" height="100px">
-            <v-card-text align="center">
+          <v-card class="my-1" color="gray" width="200px"  v-for="(bucketlist, id) in bucketlists" :key="id" style="display: flex; flex-direction: column;">
+
+            <v-card-text align="center" style="flex: 1;">
               {{ bucketlist.title }}
             </v-card-text>
             <v-card-actions align="center">
               <v-spacer></v-spacer>
-              <v-btn small v-on:click="editBucketlist(bucketlist)"
+              <v-btn small v-on:click="editBucketlist(bucketlist)" style="margin-top: auto"
                 >この目標を具体的にする</v-btn
               >
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
-        </v-flex>
       </v-layout>
     </v-container>
   </v-app>
